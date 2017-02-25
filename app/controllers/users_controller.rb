@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  respond_to :json, only: [:api_sign_in, :api_sign_out]
+  skip_before_action :check_jwt_for_cookies, only: [:api_sign_in, :api_sign_out]
+  respond_to :json
+
+  def check_signed_in
+    render json: { success: true }
+  end
+
   def api_sign_in
     user = User.find_by_email(params[:user][:email])
     if user.valid_password?(params[:user][:password])
