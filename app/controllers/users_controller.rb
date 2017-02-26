@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
   def api_sign_out
     reset_session
+    cookies.delete(:user_jwt)
     render json: { success: true, status: :unauthorized }
   end
 end
