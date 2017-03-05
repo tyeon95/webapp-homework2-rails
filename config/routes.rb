@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   get "users/check_signed_in"
   post "users/api_sign_in"
   delete "users/api_sign_out"

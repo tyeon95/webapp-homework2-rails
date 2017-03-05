@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :check_jwt_for_cookies, only: [:api_sign_in, :api_sign_out]
+  skip_before_action :check_jwt_for_current_user, only: [:api_sign_in, :api_sign_out]
   respond_to :json
 
   def check_signed_in
